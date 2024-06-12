@@ -124,7 +124,7 @@ func (q *Repo) String() string {
 	return fmt.Sprintf("repo:%s", q.Pattern)
 }
 
-// RepoBranches is a list of branches in repos to match. It is a Sourcegraph
+// RepoBranches is a list of branches in repos to match. It is a Nxpkg
 // addition and only used in the RPC interface for efficient checking of large
 // repo lists.
 type RepoBranches struct {
@@ -178,7 +178,7 @@ func (q *RepoBranches) UnmarshalBinary(b []byte) error {
 	return err
 }
 
-// RepoSet is a list of repos to match. It is a Sourcegraph addition and only
+// RepoSet is a list of repos to match. It is a Nxpkg addition and only
 // used in the RPC interface for efficient checking of large repo lists.
 type RepoSet struct {
 	Set map[string]bool

@@ -127,7 +127,7 @@ type repositorer interface {
 
 type rankedShard struct {
 	zoekt.Searcher
-	// SOURCEGRAPH we want to search shards in the order of the name to match
+	// NXPKG we want to search shards in the order of the name to match
 	// up with how we sort results in graphqlbackend.
 	name string
 }

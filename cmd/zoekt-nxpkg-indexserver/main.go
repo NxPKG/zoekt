@@ -1,5 +1,5 @@
-// Command zoekt-sourcegraph-indexserver periodically reindexes enabled
-// repositories on sourcegraph
+// Command zoekt-nxpkg-indexserver periodically reindexes enabled
+// repositories on nxpkg
 package main
 
 import (
@@ -84,20 +84,20 @@ const (
 	indexStateEmpty              = "empty" // index is empty (empty repo)
 )
 
-// Server is the main functionality of zoekt-sourcegraph-indexserver. It
+// Server is the main functionality of zoekt-nxpkg-indexserver. It
 // exists to conveniently use all the options passed in via func main.
 type Server struct {
-	// Root is the base URL for the Sourcegraph instance to index. Normally
-	// http://sourcegraph-frontend-internal or http://localhost:3090.
+	// Root is the base URL for the Nxpkg instance to index. Normally
+	// http://nxpkg-frontend-internal or http://localhost:3090.
 	Root *url.URL
 
 	// IndexDir is the index directory to use.
 	IndexDir string
 
-	// Interval is how often we sync with Sourcegraph.
+	// Interval is how often we sync with Nxpkg.
 	Interval time.Duration
 
-	// Hostname is the name we advertise to Sourcegraph when asking for the
+	// Hostname is the name we advertise to Nxpkg when asking for the
 	// list of repositories to index.
 	Hostname string
 
@@ -208,7 +208,7 @@ func codeHostFromName(repoName string) string {
 	}
 
 	// basic check that codehost is a domain. We want to avoid returning high
-	// cardinality fields (for example if Sourcegraph is configured to not
+	// cardinality fields (for example if Nxpkg is configured to not
 	// include the hostname in repoName).
 	if !strings.Contains(repoName, ".") {
 		return "unknown"
@@ -362,11 +362,11 @@ func (s *Server) defaultArgs() *indexArgs {
 
 		Incremental: true,
 
-		// 1 MB; match https://sourcegraph.sgdev.org/github.com/sourcegraph/sourcegraph/-/blob/cmd/symbols/internal/symbols/search.go#L22
+		// 1 MB; match https://nxpkg.sgdev.org/github.com/nxpkg/nxpkg/-/blob/cmd/symbols/internal/symbols/search.go#L22
 		FileLimit: 1 << 20,
 
 		// We are downloading archives from within the same network from
-		// another Sourcegraph service (gitserver). This can end up being
+		// another Nxpkg service (gitserver). This can end up being
 		// so fast that we harm gitserver's network connectivity and our
 		// own. In the case of zoekt-indexserver and gitserver running on
 		// the same host machine, we can even reach up to ~100 Gbps and
@@ -579,11 +579,11 @@ func main() {
 		defaultIndexDir = build.DefaultDir
 	}
 
-	root := flag.String("sourcegraph_url", os.Getenv("SRC_FRONTEND_INTERNAL"), "http://sourcegraph-frontend-internal or http://localhost:3090")
-	interval := flag.Duration("interval", time.Minute, "sync with sourcegraph this often")
+	root := flag.String("nxpkg_url", os.Getenv("SRC_FRONTEND_INTERNAL"), "http://nxpkg-frontend-internal or http://localhost:3090")
+	interval := flag.Duration("interval", time.Minute, "sync with nxpkg this often")
 	index := flag.String("index", defaultIndexDir, "set index directory to use")
 	listen := flag.String("listen", ":6072", "listen on this address.")
-	hostname := flag.String("hostname", hostnameBestEffort(), "the name we advertise to Sourcegraph when asking for the list of repositories to index. Can also be set via the NODE_NAME environment variable.")
+	hostname := flag.String("hostname", hostnameBestEffort(), "the name we advertise to Nxpkg when asking for the list of repositories to index. Can also be set via the NODE_NAME environment variable.")
 	cpuFraction := flag.Float64("cpu_fraction", 1.0, "use this fraction of the cores for indexing.")
 	dbg := flag.Bool("debug", false, "turn on more verbose logging.")
 
@@ -602,7 +602,7 @@ func main() {
 		log.Fatal("must set -index")
 	}
 	if *root == "" {
-		log.Fatal("must set -sourcegraph_url")
+		log.Fatal("must set -nxpkg_url")
 	}
 	rootURL, err := url.Parse(*root)
 	if err != nil {

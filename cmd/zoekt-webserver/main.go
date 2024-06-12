@@ -172,7 +172,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// Sourcegraph: Add logging if debug logging enabled
+	// Nxpkg: Add logging if debug logging enabled
 	logLvl := os.Getenv("SRC_LOG_LEVEL")
 	debug := logLvl == "" || strings.EqualFold(logLvl, "dbug")
 	if debug {

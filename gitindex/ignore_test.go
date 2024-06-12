@@ -17,7 +17,7 @@ import (
 	"github.com/google/zoekt/shards"
 )
 
-func createSourcegraphignoreRepo(dir string) error {
+func createNxpkgignoreRepo(dir string) error {
 	if err := os.MkdirAll(dir, 0755); err != nil {
 		return err
 	}
@@ -34,9 +34,9 @@ git commit -am amsg
 
 git branch branchdir/abranch
 
-mkdir .sourcegraph
-echo subdir/ > .sourcegraph/ignore
-git add .sourcegraph/ignore 
+mkdir .nxpkg
+echo subdir/ > .nxpkg/ignore
+git add .nxpkg/ignore 
 git commit -am "ignore subdir/"
 
 git update-ref refs/meta/config HEAD
@@ -56,8 +56,8 @@ func TestIgnore(t *testing.T) {
 	}
 	defer os.RemoveAll(dir)
 
-	if err := createSourcegraphignoreRepo(dir); err != nil {
-		t.Fatalf("createSourcegraphignoreRepo: %v", err)
+	if err := createNxpkgignoreRepo(dir); err != nil {
+		t.Fatalf("createNxpkgignoreRepo: %v", err)
 	}
 
 	indexDir, err := ioutil.TempDir("", "")
@@ -107,9 +107,9 @@ func TestIgnore(t *testing.T) {
 			if len(match.Branches) != 1 || match.Branches[0] != "branchdir/abranch" {
 				t.Fatalf("expected sub-file to be present only on branchdir/abranch")
 			}
-		case ".sourcegraph/ignore":
+		case ".nxpkg/ignore":
 			if len(match.Branches) != 1 || match.Branches[0] != "master" {
-				t.Fatalf("expected sourcegraphignore to be present only on master")
+				t.Fatalf("expected nxpkgignore to be present only on master")
 			}
 		default:
 			t.Fatalf("match %+v not handled", match)

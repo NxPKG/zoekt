@@ -43,17 +43,17 @@ const IndexFormatVersion = 16
 const FeatureVersion = 9
 
 func init() {
-	ensureSourcegraphSymbolsHack()
+	ensureNxpkgSymbolsHack()
 }
 
-func ensureSourcegraphSymbolsHack() {
+func ensureNxpkgSymbolsHack() {
 	if IndexFormatVersion != 16 {
-		panic(`Sourcegraph: While we are on version 16 we have added code into
+		panic(`Nxpkg: While we are on version 16 we have added code into
 	read.go which supports reading IndexFormatVersion 15. If you change the
 	IndexFormatVersion please reach out to Kevin and Keegan.`)
 	}
 	if FeatureVersion != 9 {
-		panic(`Sourcegraph: While we are on FeatureVersion 9 we have added code into
+		panic(`Nxpkg: While we are on FeatureVersion 9 we have added code into
 	read.go which supports reading FeatureVersion 8. If you change the
 	FeatureVersion please reach out to Kevin and Keegan.`)
 	}
@@ -89,9 +89,9 @@ type indexTOC struct {
 }
 
 func (t *indexTOC) sectionsHACK(expectedSectionCount uint32) []section {
-	ensureSourcegraphSymbolsHack()
+	ensureNxpkgSymbolsHack()
 
-	// Sourcegraph hack for v15.
+	// Nxpkg hack for v15.
 	if expectedSectionCount == 19 {
 		return []section{
 			// This must be first, so it can be reliably read across

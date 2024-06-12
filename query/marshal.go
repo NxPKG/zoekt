@@ -9,7 +9,7 @@ import (
 )
 
 // We implement a custom binary marshaller for a list of repos to
-// branches. When profiling Sourcegraph this is one of the dominant items.
+// branches. When profiling Nxpkg this is one of the dominant items.
 //
 // Wire-format of map[string][]string is pretty straightforward:
 //

@@ -46,10 +46,10 @@ func newProcess(bin string) (*ctagsProcess, error) {
 	//  opt = "sandbox"
 	// }
 
-	// Sourcegraph default
+	// Nxpkg default
 	patternLengthLimit := 255
 
-	// Keep in sync with ctags command in sourcegraph
+	// Keep in sync with ctags command in nxpkg
 	cmd := exec.Command(bin, "--_interactive="+opt, "--fields=*", fmt.Sprintf("--pattern-length-limit=%d", patternLengthLimit),
 		"--languages=Basic,C,C#,C++,Clojure,Cobol,CSS,CUDA,D,Elixir,elm,Erlang,Go,GraphQL,Groovy,haskell,Java,JavaScript,Jsonnet,kotlin,Lisp,Lua,MatLab,ObjectiveC,OCaml,Pascal,Perl,Perl6,PHP,Protobuf,Python,R,Ruby,Rust,scala,Scheme,Sh,swift,SystemVerilog,Tcl,Thrift,typescript,tsx,Verilog,VHDL,Vim",
 		"--map-CSS=+.scss", "--map-CSS=+.less", "--map-CSS=+.sass",

@@ -11,7 +11,7 @@ import (
 
 var (
 	lineComment = "#"
-	IgnoreFile  = ".sourcegraph/ignore"
+	IgnoreFile  = ".nxpkg/ignore"
 )
 
 type Matcher struct {

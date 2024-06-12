@@ -133,7 +133,7 @@ func (o *Options) Flags(fs *flag.FlagSet) {
 	fs.BoolVar(&o.CTagsMustSucceed, "require_ctags", x.CTagsMustSucceed, "If set, ctags calls must succeed.")
 	fs.Var(largeFilesFlag{o}, "large_file", "A glob pattern where matching files are to be index regardless of their size. You can add multiple patterns by setting this more than once.")
 
-	// Sourcegraph specific
+	// Nxpkg specific
 	fs.BoolVar(&o.DisableCTags, "disable_ctags", x.DisableCTags, "If set, ctags will not be called.")
 }
 
@@ -169,7 +169,7 @@ func (o *Options) Args() []string {
 		args = append(args, "-large_file", a)
 	}
 
-	// Sourcegraph specific
+	// Nxpkg specific
 	if o.DisableCTags {
 		args = append(args, "-disable_ctags")
 	}

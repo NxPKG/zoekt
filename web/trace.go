@@ -12,7 +12,7 @@ import (
 
 // traceAwareSearcher wraps a zoekt.Searcher instance so that the tracing context item is set in the
 // context. This context item toggles on trace collection via the
-// github.com/sourcegraph/zoekt/trace/ot package.
+// github.com/nxpkg/zoekt/trace/ot package.
 type traceAwareSearcher struct {
 	Searcher zoekt.Searcher
 }

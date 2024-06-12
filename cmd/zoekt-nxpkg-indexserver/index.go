@@ -23,7 +23,7 @@ import (
 	"github.com/google/zoekt/build"
 )
 
-// IndexOptions are the options that Sourcegraph can set via it's search
+// IndexOptions are the options that Nxpkg can set via it's search
 // configuration endpoint.
 type IndexOptions struct {
 	// LargeFiles is a slice of glob patterns where matching file paths should
@@ -42,8 +42,8 @@ type IndexOptions struct {
 type indexArgs struct {
 	IndexOptions
 
-	// Root is the base URL for the Sourcegraph instance to index. Normally
-	// http://sourcegraph-frontend-internal or http://localhost:3090.
+	// Root is the base URL for the Nxpkg instance to index. Normally
+	// http://nxpkg-frontend-internal or http://localhost:3090.
 	Root *url.URL
 
 	// Name is the name of the repository.
@@ -195,7 +195,7 @@ func gitIndex(o *indexArgs, runCmd func(*exec.Cmd) error) error {
 
 	// We shallow fetch each commit specified in zoekt.Branches. This requires
 	// the server to have configured both uploadpack.allowAnySHA1InWant and
-	// uploadpack.allowFilter. (See gitservice.go in the Sourcegraph repository)
+	// uploadpack.allowFilter. (See gitservice.go in the Nxpkg repository)
 	cloneURL := o.Root.ResolveReference(&url.URL{Path: path.Join("/.internal/git", o.Name)}).String()
 	fetchArgs := []string{"-C", gitDir, "-c", "protocol.version=2", "fetch", "--depth=1", cloneURL}
 	for _, b := range o.Branches {

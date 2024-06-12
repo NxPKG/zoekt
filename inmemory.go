@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-// This file contains a Sourcegraph specific extension which allows loading
+// This file contains a Nxpkg specific extension which allows loading
 // parts of a shard into memory. This is to experiment with avoiding the OS
 // page cache misses and drops.
 
-func sourcegraphInMemoryContent(toc *indexTOC, file IndexFile) (IndexFile, error) {
+func nxpkgInMemoryContent(toc *indexTOC, file IndexFile) (IndexFile, error) {
 	if len(inMemoryContentFields) == 0 {
 		return file, nil
 	}

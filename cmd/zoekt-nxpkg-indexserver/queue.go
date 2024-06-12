@@ -29,12 +29,12 @@ type queueItem struct {
 // Queue is a priority queue which returns the next repo to index. It is safe
 // to use concurrently. It is a min queue on:
 //
-//    (!indexed, time added to the queue)
+//	(!indexed, time added to the queue)
 //
 // We use the above since:
 //
 // * We rather index a repo sooner if we know the commit is stale.
-// * The order of repos returned by Sourcegraph API are ordered by importance.
+// * The order of repos returned by Nxpkg API are ordered by importance.
 type Queue struct {
 	mu    sync.Mutex
 	items map[string]*queueItem

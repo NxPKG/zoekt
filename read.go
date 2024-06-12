@@ -154,7 +154,7 @@ func (r *reader) readIndexData(toc *indexTOC) (*indexData, error) {
 		return nil, err
 	}
 
-	ensureSourcegraphSymbolsHack()
+	ensureNxpkgSymbolsHack()
 
 	// Once we are not on version 16 use this code again
 	// if d.metaData.IndexFormatVersion != IndexFormatVersion {
@@ -381,7 +381,7 @@ func NewSearcher(r IndexFile) (Searcher, error) {
 		return nil, err
 	}
 
-	r, err = sourcegraphInMemoryContent(&toc, r)
+	r, err = nxpkgInMemoryContent(&toc, r)
 	if err != nil {
 		return nil, err
 	}

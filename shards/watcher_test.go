@@ -51,7 +51,7 @@ func TestDirWatcherUnloadOnce(t *testing.T) {
 		loads: make(chan string, 10),
 		drops: make(chan string, 10),
 	}
-	// Upstream fails if empty. Sourcegraph does not
+	// Upstream fails if empty. Nxpkg does not
 	// _, err := NewDirectoryWatcher(dir, logger)
 	// if err == nil || !strings.Contains(err.Error(), "empty") {
 	// 	t.Fatalf("got %v, want 'empty'", err)
@@ -181,7 +181,7 @@ func TestDirWatcherLoadLatest(t *testing.T) {
 		loads: make(chan string, 10),
 		drops: make(chan string, 10),
 	}
-	// Upstream fails if empty. Sourcegraph does not
+	// Upstream fails if empty. Nxpkg does not
 	// _, err := NewDirectoryWatcher(dir, logger)
 	// if err == nil || !strings.Contains(err.Error(), "empty") {
 	// 	t.Fatalf("got %v, want 'empty'", err)

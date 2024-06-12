@@ -219,8 +219,8 @@ type Repository struct {
 	IndexOptions string
 
 	// HasSymbols is true if this repository has indexed ctags
-	// output. Sourcegraph specific: This field is more appropriate for
-	// IndexMetadata. However, we store it here since the Sourcegraph frontend
+	// output. Nxpkg specific: This field is more appropriate for
+	// IndexMetadata. However, we store it here since the Nxpkg frontend
 	// can read this structure but not IndexMetadata.
 	HasSymbols bool
 }

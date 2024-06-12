@@ -9,7 +9,7 @@ import (
 )
 
 // defaultTimeout is the maximum amount of time a search request should
-// take. This is the same default used by Sourcegraph.
+// take. This is the same default used by Nxpkg.
 const defaultTimeout = 20 * time.Second
 
 type SearchArgs struct {
